@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+const obj = {hello: "world"};
+const method = "POST";
+const body = JSON.stringify(obj);
+const headers = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
+};
+
+function postHi(){
+    console.log("Hi clicked.");
+    fetch("/hi", {
+        method: method,
+        body: body,
+        headers: headers
+    }).then(res => {
+        console.log("Hi response ");
+        console.log(res.json());
+    }).catch(error => console.error(error));
+}
+
+function postSleep(){
+    console.log("Sleep clicked.");
+    fetch("/sleep", {
+        method: method,
+        body: body,
+        headers: headers
+    }).then(res => {
+        console.log("Sleep response ");
+        console.log(res.json());
+    }).catch(error => console.error(error));
+}
+</script>
+<body>
+    <div>
+    <button onclick="postHi()">Hi!(リトライしないはず)</button>
+    </div>
+    <div>
+    <button onclick="postSleep()">sleep!(リトライするはず)</button>
+    </div>
+</body>
+</html>
